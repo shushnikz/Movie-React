@@ -11,3 +11,12 @@
   height: 600px;
   object-fit: cover;
 }
+.counter-btn{
+  width: 50px;
+  display: inline;
+  align-items: center;
+  margin-right: 1rem;
+}
+.button{
+  margin-bottom: 10px;
+}

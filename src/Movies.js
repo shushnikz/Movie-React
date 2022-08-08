@@ -1,5 +1,7 @@
 import React from "react";
 import Card from "./Card";
+import { useState } from "react";
+
 
 const movieData = [
     {
@@ -77,24 +79,50 @@ const movieData = [
     }
 ]
 
-function Movie() {
-    
+function Movies() {
+    const[Movies,setAddMovie]=useState(movieData)
+    const[title,setName]=useState("")
+    const[image,setPoster]=useState("")
+    const[rating,setRating]=useState("")
+    const[description,setSummary]=useState("")
     
     return (
-        <div className="row row-cols-1 row-cols-md-3 g-4">
-           {movieData.map((movie)=>(
-            <Card 
-            image={movie.image}
-            title={movie.title}
-             rating={movie.rating}
-             description={movie.description}
-            />
-           ))}
-        </div>
-       
+   
+        <div>
+            <input onChange={(event)=> setName(event.target.value)} placeholder="Enter Movie Name" />
+            <input onChange={(event)=> setPoster(event.target.value)} placeholder="Enter Poster" />
+            <input onChange={(event)=> setRating(event.target.value)} placeholder="Enter Movie Rating" />
+            <input onChange={(event)=> setSummary(event.target.value)} placeholder="Enter Description of Movie" />
+            <button onClick={()=>{
+                const newMovie={
+                      title:title,
+                      image:image,
+                      rating:rating,
+                      description:description
+                }
+              setAddMovie([...Movies,newMovie])
+            }
+            }
+          >Add Movie</button>
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+            
+            {movieData.map((movie,index,id)=>(
+              
+             <Card 
+             key={index}
+             id={index}
+             image={movie.image}
+             title={movie.title}
+              rating={movie.rating}
+              description={movie.description}
+             />
+            ))}
+         </div>
+           
+         </div>
     );
 
 }
 
-export default Movie;
+export default Movies;
 
